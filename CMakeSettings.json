@@ -1,0 +1,13 @@
+{
+  "configurations": [
+    {
+      "cmakeToolchain": "../../vcpkg/scripts/buildsystems/vcpkg.cmake",
+      "name": "Main",
+      "generator": "Ninja",
+      "cmakeExecutable": "C:/Program Files/CMake/bin/cmake.exe",
+      "inheritEnvironments": [ "msvc_x64" ],
+      "intelliSenseMode": "windows-clang-x64",
+      "configurationType": "Debug"
+    }
+  ]
+}

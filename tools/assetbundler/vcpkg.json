@@ -1,0 +1,14 @@
+{
+  "name": "potentia-tooling-assetbundler",
+  "version-string": "0.0.1.0",
+  "dependencies": [
+    {
+      "name": "cli11",
+      "platform": "x64"
+    },
+    {
+      "name": "assimp",
+      "platform": "x64"
+    }
+  ]
+}

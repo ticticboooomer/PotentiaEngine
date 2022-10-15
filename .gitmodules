@@ -1,0 +1,6 @@
+[submodule "tools/asset-bundler"]
+	path = tools/asset-bundler
+	url = git@github.com:PotentiaEngine/tooling-asset-bundler.git
+[submodule "tools/game-codegen"]
+	path = tools/game-codegen
+	url = git@github.com:PotentiaEngine/tooling-game-codegen.git

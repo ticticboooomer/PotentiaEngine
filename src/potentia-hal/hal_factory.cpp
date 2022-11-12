@@ -2,12 +2,12 @@
 #include "potentia-engine/levels/level_manager.h"
 #include "potentia-hal/interface/pipeline.h"
 #include "potentia-hal/interface/pipeline_layout.h"
+#include "potentia-hal/vulkan/vk_buffer.h"
 #include "potentia-hal/vulkan/vk_device.h"
 #include "potentia-hal/vulkan/vk_pipeline.h"
 #include "potentia-hal/vulkan/vk_pipeline_layout.h"
 #include "potentia-hal/vulkan/vk_surface.h"
 #include "potentia-hal/vulkan/vk_window.h"
-#include "potentia-hal/vulkan/vk_buffer.h"
 #include <memory>
 
 void hal_factory::initialize() {
@@ -30,10 +30,10 @@ void hal_factory::destroy() {
 void hal_factory::run() {
   while (!m_window->should_close()) {
     glfwPollEvents();
-    level_manager::instance()->run_for_active([](g_level* level) {
-                                                level->tick();
-                                                level->render();
-                                              });
+    level_manager::instance()->run_for_active([](g_level *level) {
+      level->tick();
+      level->render();
+    });
   }
 }
 
@@ -50,8 +50,8 @@ hal_factory::create_pipeline(std::shared_ptr<pipeline_layout> layout) {
   return pipeline;
 }
 
-
-std::shared_ptr<buffer> hal_factory::create_buffer(size_t size, buffer::usage usg) {
+std::shared_ptr<buffer> hal_factory::create_buffer(size_t size,
+                                                   buffer::usage usg) {
   std::shared_ptr<vk_buffer> buffer = std::make_shared<vk_buffer>();
   buffer->initialize(size, usg);
   return buffer;

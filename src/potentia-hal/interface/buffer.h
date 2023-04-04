@@ -1,4 +1,5 @@
 #pragma once
+#include "potentia-core/pch.h"
 
 class buffer {
 public:

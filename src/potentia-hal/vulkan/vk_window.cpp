@@ -9,7 +9,7 @@ void vk_window::initialize() {
       1500, 1000,
       config_strings::instance()->get_value(game_window_title).c_str(), nullptr,
       nullptr);
-  m_size = vk::Extent2D(1500, 1000);
+  m_size = vk::Extent2D(1920, 1068);
 }
 
 bool vk_window::should_close() { return glfwWindowShouldClose(m_window); }

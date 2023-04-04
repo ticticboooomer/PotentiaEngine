@@ -101,7 +101,7 @@ void vk_surface::initialize() {
       {}, {}, vk::ImageViewType::e2D, format, {},
       {vk::ImageAspectFlagBits::eColor, 0, 1, 0, 1});
 
-  vk::ImageView attachments[2];
+  vk::ImageView attachments[3];
   attachments[1] = m_depthView;
 
   vk::FramebufferCreateInfo framebufferCreateInfo(

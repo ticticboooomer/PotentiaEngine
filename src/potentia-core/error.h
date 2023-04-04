@@ -17,3 +17,5 @@ protected:
 #define THROW_P000002 throw potentia_error_code("P000002");
 // ERROR - vk DepthStencilAttachment is not supported for D16Unorm depth format. 
 #define THROW_P000003 throw potentia_error_code("P000003");
+// ERROR - Validation Layers are explicitly enabled but not supported
+#define THROW_P000004 throw potentia_error_code("P000004");

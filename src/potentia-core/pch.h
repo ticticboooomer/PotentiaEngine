@@ -7,3 +7,4 @@
 #include <filesystem>
 #include "error.h"
 #include "potentia-core/base/global_singleton.h"
+#include <cstddef>

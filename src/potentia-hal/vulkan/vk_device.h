@@ -23,7 +23,7 @@ protected:
   uint32_t find_surface_queue_index(std::vector<vk::QueueFamilyProperties>,
                                     uint32_t *);
   void init_logical_device();
-  static static vk::InstanceCreateInfo get_instance_create_info();
+  static vk::InstanceCreateInfo get_instance_create_info();
   vk::Instance m_instance;
   vk::PhysicalDevice m_physicalDevice;
   vk::Device m_device;

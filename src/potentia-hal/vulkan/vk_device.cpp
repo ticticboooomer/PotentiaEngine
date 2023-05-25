@@ -153,7 +153,34 @@ void vk_device::init_logical_device() {
 
 void vk_device::init_physical() {
 
-    m_instance = vk::createInstance(get_instance_create_info());
+
+    vk::ApplicationInfo app_info(
+            "YES", 1, "Potentia", VK_MAKE_VERSION(0, 0, 1),
+            VK_API_VERSION_1_3, nullptr);
+    if (!checkValidationLayerSupport()) {
+        THROW_P000004
+    }
+
+    uint32_t glfwExtensionCount = 0;
+    const char **glfwExtensions;
+    glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
+
+    std::vector<const char *> extensions;
+    for (int i = 0; i < glfwExtensionCount; i ++) {
+        extensions.push_back(glfwExtensions[i]);
+    }
+//    extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+
+    vk::InstanceCreateInfo create_info({}, &app_info);
+    create_info.enabledExtensionCount = extensions.size();
+    create_info.ppEnabledExtensionNames = extensions.data();
+    create_info.enabledLayerCount = validationLayers.size();
+    create_info.ppEnabledLayerNames = validationLayers.data();
+    app_info.pNext = nullptr;
+    app_info.sType = vk::StructureType::eApplicationInfo;
+    app_info.pApplicationName = "MHM";
+
+    m_instance = vk::createInstance(create_info);
 #if !defined( NDEBUG )
     auto createInfo = vk::DebugUtilsMessengerCreateInfoEXT({{},
                                                             vk::DebugUtilsMessageSeverityFlagBitsEXT::eWarning |
@@ -169,7 +196,7 @@ void vk_device::init_physical() {
 
 vk::InstanceCreateInfo vk_device::get_instance_create_info() {
     vk::ApplicationInfo app_info(
-            config_strings::instance()->get_value(game_name).c_str(), 1, "Potentia", VK_MAKE_VERSION(0, 0, 1),
+            "YES", 1, "Potentia", VK_MAKE_VERSION(0, 0, 1),
             VK_API_VERSION_1_3, nullptr);
     if (!checkValidationLayerSupport()) {
         THROW_P000004
@@ -179,14 +206,20 @@ vk::InstanceCreateInfo vk_device::get_instance_create_info() {
     const char **glfwExtensions;
     glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
 
-    std::vector<const char *> extensions(glfwExtensions, glfwExtensions + glfwExtensionCount);
+    std::vector<const char *> extensions;
+    for (int i = 0; i < glfwExtensionCount; i ++) {
+        extensions.push_back(glfwExtensions[i]);
+    }
 //    extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
 
     vk::InstanceCreateInfo create_info({}, &app_info);
-    create_info.enabledExtensionCount = glfwExtensionCount;
-    create_info.ppEnabledExtensionNames = glfwExtensions;
+    create_info.enabledExtensionCount = extensions.size();
+    create_info.ppEnabledExtensionNames = extensions.data();
     create_info.enabledLayerCount = validationLayers.size();
     create_info.ppEnabledLayerNames = validationLayers.data();
+    app_info.pNext = nullptr;
+    app_info.sType = vk::StructureType::eApplicationInfo;
+    app_info.pApplicationName = "MHM";
     return create_info;
 }
 
